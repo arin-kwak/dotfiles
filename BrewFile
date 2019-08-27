@@ -1,0 +1,29 @@
+# BrewFile
+tap "caskroom/fonts"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+
+brew "python3"
+brew "fish"
+brew "git"
+brew "wget"
+brew "mas"
+
+cask "iterm2"
+cask "anki"
+cask "iina"
+cask "google-chrome"
+cask "toggl"
+cask "detexify"
+cask "notion"
+cask "ubersicht"
+cask "docker"
+cask "jetbrains-toolbox"
+cask "visual-studio-code"
+cask "keka"
+cask "qbittorrent"
+cask "vmware-fusion"
+cask "caskroom/fonts/font-source-code-pro"
+mas "KakaoTalk", id: 869223134
+mas "Todoist", id: 585829637

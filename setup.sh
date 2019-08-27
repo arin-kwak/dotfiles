@@ -11,7 +11,7 @@ main () {
     if [[ $(uname -s) == "Darwin" ]]; then
         "$ROOT/config-osx.sh"
         "$ROOT/install.sh"
-        "$ROOT/symlink-osx-dev-apps.sh"
+#        "$ROOT/symlink-osx-dev-apps.sh"
     elif [[ $(uname -s) == "Linux" ]]; then
         echo Linux is currently not supported. Sorry.
         # "$ROOT/install-linux.sh"

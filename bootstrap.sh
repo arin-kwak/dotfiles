@@ -10,8 +10,10 @@ chmod +x *
 
 main () {
     if [[ $(uname -s) == "Darwin" ]]; then
-        "./mac_setup.sh"
-        "./install.sh"
+        source ./mac_setup.sh
+        source ./install.sh
+        source ./setting.sh
+        source ./mac_setup_restart.sh
     elif [[ $(uname -s) == "Linux" ]]; then
         echo Linux is currently not supported. Sorry.
     fi

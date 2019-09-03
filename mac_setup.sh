@@ -3,13 +3,12 @@
 # Ask for the administrator password upfront
 sudo -v
 
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+# Keep-alive: update existing `sudo` time stamp until the script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
-
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
@@ -58,7 +57,6 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Finder: disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true
 
-
 # Finder: show hidden files by default
 defaults write com.apple.Finder AppleShowAllFiles -bool true
 
@@ -91,6 +89,28 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
+
+# Enable snap-to-grid for icons on the desktop and in other icon views
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+
+###############################################################################
+# Screen                                                                      #
+###############################################################################
+
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "png"
+
+###############################################################################
+# Address Book, Dashboard, iCal, TextEdit, and Disk Utility                   #
+###############################################################################
+
+# Use plain text mode for new TextEdit documents
+defaults write com.apple.TextEdit RichText -int 0
+# Open and save files as UTF-8 in TextEdit
+defaults write com.apple.TextEdit PlainTextEncoding -int 4
+defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
@@ -172,14 +192,3 @@ defaults write com.apple.dock mru-spaces -bool false
 # App->Space stickyness
 # re-export text plist with `defaults read ~/Library/Preferences/com.apple.spaces.plist > osx/spaces.plist`
 # defaults import ~/Library/Preferences/com.apple.spaces.plist prefs/osx/spaces.plist
-
-###############################################################################
-# Kill affected applications                                                  #
-###############################################################################
-
- for app in "Activity Monitor" "cfprefsd" "Dock" "Finder" "Safari" "SystemUIServer"; \
- 	do 
- 	killall "${app}" > /dev/null 2>&1
- done
-
-echo "Done. Note that some of these changes require a logout/restart to take effect."

@@ -25,5 +25,6 @@ cask "keka"
 cask "qbittorrent"
 cask "vmware-fusion"
 cask "caskroom/fonts/font-source-code-pro"
+cask "grammarly"
 mas "KakaoTalk", id: 869223134
 mas "Todoist", id: 585829637
